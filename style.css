@@ -42,3 +42,82 @@ body {
 .degree-section h2 {
     font-size: 40px;
 }
+
+.five-day-tag {
+    margin-top: 50px;
+}
+
+.five-day {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.one-day {
+    padding: 10px;
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
+    border: 3px solid silver;
+    border-radius: 10px;
+}
+
+.day-one {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+
+#icon2 {
+    margin-left: 20px;
+}
+
+
+.day-two {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+
+#icon3 {
+    margin-left: 20px;
+}
+
+
+.day-three {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+
+#icon4 {
+    margin-left: 20px;
+}
+
+
+.day-four {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+
+#icon5 {
+    margin-left: 20px;
+}
+
+
+.day-five {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+
+#icon6 {
+    margin-left: 20px;
+}
+
+.forecast-temp {
+    margin-left: 5px;
+}

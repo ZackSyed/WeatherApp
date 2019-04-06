@@ -20,15 +20,17 @@ window.addEventListener('DOMContentLoaded', () => {
             fetch(api)
                 .then(weatherData => {
                     return weatherData.json();
-                }).then(data => {
-                    console.log(data);
-                    const { temperature, summary, icon } = data.currently;
+                }).then(info => {
+                    console.log(info);
+                    const { temperature, summary, icon } = info.currently;
+                    const { data } = info.daily;
+                    console.log(data)
 
                     //Set DOM elements from the api 
 
                     temperatureDegree.textContent = temperature;
                     temperatureDescription.textContent = summary;
-                    locationTimezone.textContent = data.timezone.split('/')[1].replace(/_/g, " ");
+                    locationTimezone.textContent = info.timezone.split('/')[1].replace(/_/g, " ");
 
                     // Set Icons 
                     setIcons(icon, document.getElementById("icon1"));
@@ -44,6 +46,45 @@ window.addEventListener('DOMContentLoaded', () => {
                             temperatureDegree.textContent = temperature;
                         }
                     })
+                    
+                    let i = 2;
+                    for (let j = 1; j < 6; j++) {
+                        setIcons(data[j].icon, document.getElementById("icon" + i.toString()));
+                        switch (j) {
+                            case 1:
+                                document.querySelector(".day-one h2").textContent = 
+                                    Math.floor(data[j].temperatureHigh);
+                                document.querySelector(".day-one span").textContent = 
+                                    timeConverter(data[j].time);
+                            case 2:
+                                document.querySelector(".day-two h2").textContent = 
+                                    Math.floor(data[j].temperatureHigh);
+                                document.querySelector(".day-two span").textContent = 
+                                    timeConverter(data[j].time);
+                            case 3:
+                                document.querySelector(".day-three h2").textContent = 
+                                        Math.floor(data[j].temperatureHigh);
+                                document.querySelector(".day-three span").textContent = 
+                                        timeConverter(data[j].time);
+                            case 4: 
+                                document.querySelector(".day-four h2").textContent = 
+                                        Math.floor(data[j].temperatureHigh);
+                                document.querySelector(".day-four span").textContent = 
+                                        timeConverter(data[j].time);
+                            case 5:
+                                document.querySelector(".day-five h2").textContent = 
+                                        Math.floor(data[j].temperatureHigh);
+                                document.querySelector(".day-five span").textContent = 
+                                        timeConverter(data[j].time);
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+
+
+
+
                 })
         });
     }
@@ -54,4 +95,14 @@ window.addEventListener('DOMContentLoaded', () => {
         skycons.play();
         return skycons.set(iconID, Skycons[currentIcon]);
     }
+
+    function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var time = month + ' ' + date + ' ';
+        return time;
+      }
+      console.log(timeConverter(0));
 });
